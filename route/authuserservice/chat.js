@@ -365,6 +365,13 @@ router.use(function timeLog (req,res, next){
         //console.log("phone", prp_up.property.phone);
         for(var i_phone=0; i_phone<len_phone ;i_phone++){
             var new_phone = prp_up.property.phone[i_phone];
+
+            new_phone = new_phone.replace(/[^0-9\+]/g,"");
+            if(new_phone.substring(0,1)!="+"){
+                new_phone ="+1"+new_phone;
+            }
+
+
             if(new_phone == "" || new_phone == null ) continue;
             //console.log("phone",new_phone);
             var tmp_prp = JSON.parse(JSON.stringify(prp_up.property));
